@@ -9,24 +9,23 @@ import kr.co.tjoeun.jickbangcopy_20200812.R
 import kr.co.tjoeun.jickbangcopy_20200812.datas.Room
 
 //4. Adapter 클래스 생성
-// 2) Adapter의 주 생성자에서 필요한 재료를 받고
+//4-2) Adapter의 주 생성자에서 필요한 재료를 받고
 class RoomAdapter(
     val mContext: Context,
     val resId: Int,
     val mList: List<Room>
 
-// 1) ArrayAdapter<Student(뿌려줄 데이터클래스)>() 상속받고
-// 3) ArrayAdapter<Room>(mContext, resId, mList) 생성자에서 필요한 재료 순으로 부모에게 넘기자
-// 1) ArrayAdapter<Student(뿌려줄 데이터클래스)>() 상속받고
+//4-1) ArrayAdapter<Student(뿌려줄 데이터클래스)>() 상속받고
+//4-3) ArrayAdapter<Room>(mContext, resId, mList) 생성자에서 필요한 재료 순으로 부모에게 넘기자
 ) : ArrayAdapter<Room>(mContext, resId, mList) {
 
-    // 4) 객체로 변환해주는 (화면에 뿌리도록 도와주는) 변수를 멤버변수로 생성
+    //4-4) 객체로 변환해주는 (화면에 뿌리도록 도와주는) 변수를 멤버변수로 생성
     val inf = LayoutInflater.from(mContext)
 
-    // 5) getView 함수를 오버라이딩
+    //4-5) getView 함수를 오버라이딩
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
-        //6 convertView 변수를 -> var tempRow에 옮겨담아서 -> null인 경우에는 새로 inflate해서 담자
+        //4-6) convertView 변수를 -> var tempRow에 옮겨담아서 -> null인 경우에는 새로 inflate해서 담자
         //쓰는 용도 : listView의 재사용성을 위해
         var tempRow = convertView
         if(tempRow == null)
