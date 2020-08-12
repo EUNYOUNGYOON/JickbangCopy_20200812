@@ -1,12 +1,16 @@
 package kr.co.tjoeun.jickbangcopy_20200812.adapters
 
+import android.animation.TypeConverter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import kr.co.tjoeun.jickbangcopy_20200812.R
 import kr.co.tjoeun.jickbangcopy_20200812.datas.Room
+import java.text.NumberFormat
+import java.util.*
 
 //4. Adapter 클래스 생성
 //4-2) Adapter의 주 생성자에서 필요한 재료를 받고
@@ -35,6 +39,27 @@ class RoomAdapter(
 
         // tempRow는 맞는데 절대 null은 아니다 (=!!)
         val row = tempRow!!
+
+        //7. 실제 데이터가 목록에 반영되도록, Adapter클래스의 getView 함수 내부 수정.
+        //7-1) 뿌려줄 row안에 있는 텍스트 뷰 변수로 담기
+        val descTxt = row.findViewById<TextView>(R.id.descTxt)
+        val addrFloorTxt = row.findViewById<TextView>(R.id.addrFloorTxt)
+        val priceTxt = row.findViewById<TextView>(R.id.priceTxt)
+
+        descTxt.text = mList[position].description
+        addrFloorTxt.text = mList[position].address + ", " + mList[position].floor + "층"
+
+        if(mList[position].price >= 10000)
+        {
+            priceTxt.text = NumberFormat.getNumberInstance(Locale.KOREA).format(mList[position].price)
+        }
+        else
+        {
+            priceTxt.text = NumberFormat.getNumberInstance(Locale.KOREA).format(mList[position].price)
+
+        }
+
+
         return row
     }
 
