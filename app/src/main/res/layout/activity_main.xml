@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    // 1. 액티비티 화면 (xml)에 리스트뷰 배치 + id 부여
+    //1. 액티비티 화면 (xml)에 리스트뷰 배치 + id 부여
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

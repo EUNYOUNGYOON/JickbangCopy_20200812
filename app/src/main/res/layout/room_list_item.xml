@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    //3. 데이터가 뿌려질 (한줄에 해당하는) 모양을 xml로 layout 폴더에 추가하자
     // 사진 | 데이터 - 전체가 360dp
     <LinearLayout
         android:layout_width="match_parent"
