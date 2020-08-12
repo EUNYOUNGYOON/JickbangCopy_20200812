@@ -47,11 +47,27 @@ class RoomAdapter(
         val priceTxt = row.findViewById<TextView>(R.id.priceTxt)
 
         descTxt.text = mList[position].description
-        addrFloorTxt.text = mList[position].address + ", " + mList[position].floor + "층"
+
+        if(mList[position].floor > 0)
+        {
+            addrFloorTxt.text = "${mList[position].address}, ${mList[position].floor}층"
+        }
+        else if(mList[position].floor == 0)
+        {
+            addrFloorTxt.text = "${mList[position].address}, 반지하"
+        }
+        else
+        {
+            addrFloorTxt.text = "${mList[position].address}, 지하 ${mList[position].floor}층"
+        }
+
+
 
         if(mList[position].price >= 10000)
         {
-            priceTxt.text = NumberFormat.getNumberInstance(Locale.KOREA).format(mList[position].price)
+            val hm = mList[position].price / 10000
+            val thou = mList[position].price % 10000
+            priceTxt.text = "${hm}억 ${NumberFormat.getNumberInstance(Locale.KOREA).format(thou)}"
         }
         else
         {
