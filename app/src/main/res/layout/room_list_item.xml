@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    // 사진 | 데이터 - 전체가 360dp
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        // 크기를 강제로 지정, centerCrop : 강제로 화면크기에 맞게 사진크기 조절
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="centerCrop"/>
+
+        // 데이터들이 있는 Layout
+        // center_vertical을 안하면 글씨들이 제일 위에 있으니 글씨가 높이의 center에 있게 설정
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8,000 (예시 가격)"
+                android:textSize="25sp"
+                android:textColor="#FFA509"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="마포구 서교동, 1층 (예시)"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="설명문구자리"
+                android:layout_marginTop="3dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
