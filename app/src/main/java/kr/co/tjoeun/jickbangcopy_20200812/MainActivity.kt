@@ -2,12 +2,17 @@ package kr.co.tjoeun.jickbangcopy_20200812
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
+import kr.co.tjoeun.jickbangcopy_20200812.adapters.RoomAdapter
 import kr.co.tjoeun.jickbangcopy_20200812.datas.Room
 
 class MainActivity : BaseActivity() {
 
     //5. 액티비티에서 실제 목록을 담아줄 ArrayList를 만들고, 그 안에서 실제 데이터들을 담아주자.
     val mRoomList = ArrayList<Room>()
+
+    //6. 만들어둔 (정의해둔) Adapter 클래스를 액티비티에 있는 리스트뷰와 연결
+    lateinit var mRoomAdapter: RoomAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +42,14 @@ class MainActivity : BaseActivity() {
         mRoomList.add(Room(800, "서울시 영등포구", -2, "마포구의 지하 2층 방입니다."))
         mRoomList.add(Room(118000, "서울시 영등포구", 3, "마포구의 3층 방입니다."))
         mRoomList.add(Room(10000, "수원시 장안구", 7, "마포구의 7층 방입니다."))
-        
 
+        // 초기화를 미뤄둔 어댑터를 실제로 초기화하자
+        //6-1) adapter클래스를 객체화(5. 에서 만든 목록과 연결)
+        // BaseActivity의 mContext, 어떤 리스트를 보여줄건지, 목록변수의 이름
+        mRoomAdapter = RoomAdapter(mContext, R.layout.room_list_item, mRoomList)
 
+        //6-2) 객체화 된 adapter변수를 -> 리스트뷰의 어댑터로 지정
+        roomListView.adapter = mRoomAdapter
     }
-
-
-
 
 }
