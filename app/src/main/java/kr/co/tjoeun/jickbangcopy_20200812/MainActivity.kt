@@ -11,9 +11,11 @@ import kr.co.tjoeun.jickbangcopy_20200812.datas.Room
 class MainActivity : BaseActivity() {
 
     //5. 액티비티에서 실제 목록을 담아줄 ArrayList를 만들고, 그 안에서 실제 데이터들을 담아주자.
+    // 화면에 나타날 방들이 담길 목록(배열)
     val mRoomList = ArrayList<Room>()
 
     //6. 만들어둔 (정의해둔) Adapter 클래스를 액티비티에 있는 리스트뷰와 연결
+    // lateinit var: 변수는 미리 만들지만 객체 대입은 (초기화)은 나중에 하겠다.
     lateinit var mRoomAdapter: RoomAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +29,6 @@ class MainActivity : BaseActivity() {
 
     override fun setupEvents() {
         // 메인화면의 이벤트 관련 코드를 모아둘 장소
-
         //8. 리스트 클릭 이벤트
         roomListView.setOnItemClickListener { adapterView, view, i, l ->
 
@@ -47,7 +48,6 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
         // 메인화면의 값 출력 관련 코드 모아둘 장소
-
         //5-1) 실제로 뿌려줄 데이터들을 ArrayList변수에 추가해주자.
         // 방목록을 강제로 추가하는 코드
         mRoomList.add(Room(8000, "서울시 마포구", 1, "마포구의 1층 방입니다."))
