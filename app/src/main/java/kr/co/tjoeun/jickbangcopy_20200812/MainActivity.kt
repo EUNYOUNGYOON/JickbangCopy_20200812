@@ -22,6 +22,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // 두개의 함수에 적힌 코드는 반드시 onCreate() 내부에서 다시 실행시켜줘야 실제로 동작함.
         setupEvents()
         setValues()
     }
