@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import kr.co.tjoeun.jickbangcopy_20200812.R
 import kr.co.tjoeun.jickbangcopy_20200812.datas.Room
+import java.lang.Math.abs
 import java.text.NumberFormat
 import java.util.*
 
@@ -42,37 +43,58 @@ class RoomAdapter(
 
         //7. 실제 데이터가 목록에 반영되도록, Adapter클래스의 getView 함수 내부 수정.
         //7-1) 뿌려줄 row안에 있는 텍스트 뷰 변수로 담기
+        val data = mList[position]
         val descTxt = row.findViewById<TextView>(R.id.descTxt)
         val addrFloorTxt = row.findViewById<TextView>(R.id.addrFloorTxt)
         val priceTxt = row.findViewById<TextView>(R.id.priceTxt)
 
-        descTxt.text = mList[position].description
+        descTxt.text = data.description
 
-        if(mList[position].floor > 0)
+        // 층수 >= 1 : 2층 5층 등 / 층수 == 0 / 그 외 : 지하 2층, 지하 1층 등
+        var flooString : String
+        if(data.floor >= 1)
         {
-            addrFloorTxt.text = "${mList[position].address}, ${mList[position].floor}층"
+            flooString = "${data.floor}층"
         }
-        else if(mList[position].floor == 0)
+        else if(data.floor == 0)
         {
-            addrFloorTxt.text = "${mList[position].address}, 반지하"
-        }
-        else
-        {
-            addrFloorTxt.text = "${mList[position].address}, 지하 ${mList[position].floor}층"
-        }
-
-
-
-        if(mList[position].price >= 10000)
-        {
-            val hm = mList[position].price / 10000
-            val thou = mList[position].price % 10000
-            priceTxt.text = "${hm}억 ${NumberFormat.getNumberInstance(Locale.KOREA).format(thou)}"
+            flooString = "반지하"
         }
         else
         {
-            priceTxt.text = NumberFormat.getNumberInstance(Locale.KOREA).format(mList[position].price)
+            flooString = "지하 ${-data.floor}층"
+        }
 
+        addrFloorTxt.text = "${data.address}, ${flooString}"
+
+//        when {
+//            data.floor > 0 -> {
+//                addrFloorTxt.text = "${data.address}, ${data.floor}층"
+//            }
+//            data.floor == 0 -> {
+//                addrFloorTxt.text = "${data.address}, 반지하"
+//            }
+//            else -> {
+//                addrFloorTxt.text = "${data.address}, 지하 ${abs(data.floor)}층"
+//            }
+//        }
+
+        if(data.price >= 10000)
+        {
+            val hm = data.price / 10000
+            val thou = data.price % 10000
+            if(thou == 0)
+            {
+                priceTxt.text = "${hm}억"
+            }
+            else
+            {
+                priceTxt.text = "${hm}억 ${NumberFormat.getNumberInstance(Locale.KOREA).format(thou)}"
+            }
+        }
+        else
+        {
+            priceTxt.text = NumberFormat.getNumberInstance(Locale.KOREA).format(data.price)
         }
 
 
