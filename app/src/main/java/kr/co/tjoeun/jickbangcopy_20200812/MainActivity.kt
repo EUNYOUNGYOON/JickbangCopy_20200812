@@ -1,8 +1,10 @@
 package kr.co.tjoeun.jickbangcopy_20200812
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.room_list_item.*
 import kr.co.tjoeun.jickbangcopy_20200812.adapters.RoomAdapter
 import kr.co.tjoeun.jickbangcopy_20200812.datas.Room
 
@@ -20,11 +22,27 @@ class MainActivity : BaseActivity() {
 
         setupEvents()
         setValues()
-
     }
+
 
     override fun setupEvents() {
         // 메인화면의 이벤트 관련 코드를 모아둘 장소
+
+        //8. 리스트 클릭 이벤트
+        roomListView.setOnItemClickListener { adapterView, view, i, l ->
+
+            val clickedRoom = mRoomList[i]
+            val myIntent = Intent(mContext, ViewRoomDetailActivity::class.java)
+            //8-1) 해당 방의 가격이랑 주소등의 데이터를 담아줘야한다.
+            //myIntent.putExtra("방이름", clickedRoom.price)
+
+            //8-3) Serializable로 설정하면 오류 안나고
+            myIntent.putExtra("roomInfo", clickedRoom) // datas > Room 의 Room 상속 Serializable을 넣자
+            // 이동
+            startActivity(myIntent)
+
+        }
+
     }
 
     override fun setValues() {

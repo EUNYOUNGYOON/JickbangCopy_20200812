@@ -20,7 +20,9 @@
         android:padding="15dp"
         android:orientation="vertical">
 
+        //8-5) 넣어줄 데이터들 id 세팅
         <TextView
+            android:id="@+id/priceTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="8,500 (가격자리)"
@@ -29,6 +31,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/descTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="설명 문구 나올자리"
@@ -59,6 +62,7 @@
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/addressTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="서울시 은평구"
@@ -89,6 +93,7 @@
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/floorTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="지하 1층 (예시)"
