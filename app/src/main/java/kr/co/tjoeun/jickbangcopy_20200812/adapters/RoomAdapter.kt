@@ -79,24 +79,27 @@ class RoomAdapter(
 //            }
 //        }
 
-        if(data.price >= 10000)
-        {
-            val hm = data.price / 10000
-            val thou = data.price % 10000
-            if(thou == 0)
-            {
-                priceTxt.text = "${hm}억"
-            }
-            else
-            {
-                priceTxt.text = "${hm}억 ${NumberFormat.getNumberInstance(Locale.KOREA).format(thou)}"
-            }
-        }
-        else
-        {
-            priceTxt.text = NumberFormat.getNumberInstance(Locale.KOREA).format(data.price)
-        }
+        // 9번을 하기전에 초창기 데이터
+//        if(data.price >= 10000)
+//        {
+//            val hm = data.price / 10000
+//            val thou = data.price % 10000
+//            if(thou == 0)
+//            {
+//                priceTxt.text = "${hm}억"
+//            }
+//            else
+//            {
+//                priceTxt.text = "${hm}억 ${NumberFormat.getNumberInstance(Locale.KOREA).format(thou)}"
+//            }
+//        }
+//        else
+//        {
+//            priceTxt.text = NumberFormat.getNumberInstance(Locale.KOREA).format(data.price)
+//        }
 
+        //9-1. getFormattedPrice 사용하기
+        priceTxt.text = data.getFormattedPrice()
 
         return row
     }

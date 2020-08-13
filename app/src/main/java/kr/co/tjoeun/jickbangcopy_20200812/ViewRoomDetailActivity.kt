@@ -24,8 +24,11 @@ class ViewRoomDetailActivity : BaseActivity() {
         val room = intent.getSerializableExtra("roomInfo") as Room
 
         // 8-6) as Room 캐스팅이 안하면 에러가 난다.
-        priceTxt.text = room.price.toString()
+        // 9-2) getFormattedPrice 적용
+        priceTxt.text = room.getFormattedPrice()
         addressTxt.text = room.address
+        descTxt.text = room.description
+        floorTxt.text = room.floor.toString()
 
 
     }
