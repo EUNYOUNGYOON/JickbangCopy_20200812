@@ -28,15 +28,17 @@ class MainActivity : BaseActivity() {
     override fun setupEvents() {
         // 메인화면의 이벤트 관련 코드를 모아둘 장소
 
-        //8. 리스트 클릭 이벤트
+        //8. 리스트 클릭 이벤트 - 리스트뷰의 각 줄이 눌리는 시점의 이벤트(세번째 변수의 이름 확인- position or i)
         roomListView.setOnItemClickListener { adapterView, view, i, l ->
 
+            // 눌린 위치에 해당하는 방이 어떤 방인지 가져오기
             val clickedRoom = mRoomList[i]
             val myIntent = Intent(mContext, ViewRoomDetailActivity::class.java)
             //8-1) 해당 방의 가격이랑 주소등의 데이터를 담아줘야한다.
             //myIntent.putExtra("방이름", clickedRoom.price)
 
             //8-3) Serializable로 설정하면 오류 안나고
+            // 해당 방을 통째로 넘겨서 이동
             myIntent.putExtra("roomInfo", clickedRoom) // datas > Room 의 Room 상속 Serializable을 넣자
             // 이동
             startActivity(myIntent)
@@ -64,9 +66,13 @@ class MainActivity : BaseActivity() {
         // 초기화를 미뤄둔 어댑터를 실제로 초기화하자
         //6-1) adapter클래스를 객체화(5. 에서 만든 목록과 연결)
         // BaseActivity의 mContext, 어떤 리스트를 보여줄건지, 목록변수의 이름
+        // lateinit var 로 초기화를 미뤄던 변수의 실제 초기화 코드(mContext=어떤화면에서?, romm_list_item=어떤모양으로그릴지?, mRoomList=어떤목록?)
+        // RoomAdapter의 생성자를 만들 때 요구했던 자료들을 넣는다.
         mRoomAdapter = RoomAdapter(mContext, R.layout.room_list_item, mRoomList)
 
         //6-2) 객체화 된 adapter변수를 -> 리스트뷰의 어댑터로 지정
+        // 방목록 리스트뷰의 어댑터로 -> mRoomAdapter지정
+        // 실제 목록을 리스트뷰에 뿌려주게된다.
         roomListView.adapter = mRoomAdapter
     }
 
