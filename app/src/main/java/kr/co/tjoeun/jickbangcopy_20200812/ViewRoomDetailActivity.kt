@@ -28,7 +28,7 @@ class ViewRoomDetailActivity : BaseActivity() {
         priceTxt.text = room.getFormattedPrice()
         addressTxt.text = room.address
         descTxt.text = room.description
-        floorTxt.text = room.floor.toString()
+        floorTxt.text = room.getFormattedFloor()
 
 
     }

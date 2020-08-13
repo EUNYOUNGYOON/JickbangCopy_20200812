@@ -38,4 +38,23 @@ class Room (
             return NumberFormat.getNumberInstance().format(this.price)
         }
     }
+
+    // 10. function추가 floor
+    fun getFormattedFloor() : String {
+
+        var flooString : String
+        if(this.floor >= 1)
+        {
+            flooString = "${this.floor}층"
+        }
+        else if(this.floor == 0)
+        {
+            flooString = "반지하"
+        }
+        else
+        {
+            flooString = "지하 ${-this.floor}층"
+        }
+        return flooString
+    }
 }

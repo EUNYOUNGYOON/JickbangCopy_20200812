@@ -51,21 +51,25 @@ class RoomAdapter(
         descTxt.text = data.description
 
         // 층수 >= 1 : 2층 5층 등 / 층수 == 0 / 그 외 : 지하 2층, 지하 1층 등
-        var flooString : String
-        if(data.floor >= 1)
-        {
-            flooString = "${data.floor}층"
-        }
-        else if(data.floor == 0)
-        {
-            flooString = "반지하"
-        }
-        else
-        {
-            flooString = "지하 ${-data.floor}층"
-        }
+        // 10. floor도 function만들기
+//        var flooString : String
+//        if(data.floor >= 1)
+//        {
+//            flooString = "${data.floor}층"
+//        }
+//        else if(data.floor == 0)
+//        {
+//            flooString = "반지하"
+//        }
+//        else
+//        {
+//            flooString = "지하 ${-data.floor}층"
+//        }
+//
+//        addrFloorTxt.text = "${data.address}, ${flooString}"
 
-        addrFloorTxt.text = "${data.address}, ${flooString}"
+        // 10-1) floor 관련 getFormattedFloor() 적용
+        addrFloorTxt.text = data.getFormattedFloor()
 
 //        when {
 //            data.floor > 0 -> {
